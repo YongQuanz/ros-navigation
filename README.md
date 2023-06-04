@@ -1,2 +1,2 @@
 # ros-navigation
-Files for to simulate navigation.
+Files to simulate navigation.
