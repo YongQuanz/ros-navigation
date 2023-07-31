@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- Reload map -->
+  <node name="map_reload" pkg="map_server" type="map_server" args="$(find master)/maps/dmap.yaml" />
+
+  <!-- Launch move_base--> 
+
+  <include file="$(find master)/launch/move_base_nav_eli.launch"/>
+</launch>

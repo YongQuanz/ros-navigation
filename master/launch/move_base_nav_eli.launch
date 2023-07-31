@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+	<param name ="/use_sim_time" value="true"/>
+	<node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen" > 
+		<!--remap from="scan" to="base_scan_1" /-->
+		<rosparam file="$(find master)/config/costmap_common_params_eli.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find master)/config/costmap_common_params_eli.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find master)/config/local_costmap_params_eli.yaml" command="load" />
+		<rosparam file="$(find master)/config/global_costmap_params_eli.yaml" command="load" />
+		<rosparam file="$(find master)/config/base_local_planner_params_eli.yaml" command="load" />
+
+		<param name="recovery_behavior_enabled" type="string" value="false"/>
+		<!--param name="conservative_reset_dist" type="double" value="6.0" /-->
+		<param name="controller_frequency" type="double" value="5.0" />
+		<!--remap from="cmd_vel" to="cmd_vel"/>
+		<remap from="odom" to="/odom"/-->
+		<!--remap from="scan" to="/base_scan_1"/-->
+		<param name ="/use_sim_time" value="true"/>
+	</node>
+     
+     
+</launch>
+
+

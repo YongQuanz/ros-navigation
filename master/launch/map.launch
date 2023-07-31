@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--Roboclaw Driver -->
+  <include file="$(find roboclaw_base)/launch/roboclaw_base.launch"/>
+
+  <!-- IMU -->
+  <include file="$(find vmu931_imu)/launch/vmu931_imu_SPF.launch"/> 
+
+  <!-- Robot_pose_ekf -->
+  <include file="$(find robot_pose_ekf)/robot_pose_ekf2.launch"/>
+
+  <!-- Hokuyo Laser -->
+  <include file="$(find urg_node)/launch/hokuyo_SPF.launch"/> 
+
+  <!--Gmapping to map the area -->
+  <include file="$(find gmapping)/launch/slam_gmapping.launch"/>
+
+  <!--AMCL to localize robot with laser data-->
+  <include file="$(find master)/launch/amcl.launch" />
+
+  <!--Rviz (Visualisation tool)-->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find master)/rviz/master.rviz"/>
+
+  <!--Teleop Joy-->
+  <include file="$(find teleop_twist_joy)/launch/teleop.launch"/>
+
+</launch>

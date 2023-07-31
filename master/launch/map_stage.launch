@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--Simulator Stageros node -->
+  <include file="$(find master)/launch/stage.launch"/>
+
+  <!--Gmapping to map the area -->
+  <include file="$(find master)/launch/slam_gmapping_stage.launch"/>
+
+  <!-- run fake_localization (produces amcl topics) -->
+  <node name="fake_localization" pkg="fake_localization" type="fake_localization" />
+
+  <!--Rviz (Visualisation tool)-->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find master)/rviz/master.rviz"/>
+
+  <!--Teleop Joy-->
+  <!--<include file="$(find teleop_twist_joy)/launch/teleop.launch"/>-->
+
+</launch>

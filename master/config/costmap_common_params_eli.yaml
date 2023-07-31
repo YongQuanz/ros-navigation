@@ -1,0 +1,13 @@
+obstacle_range: 3.0
+raytrace_range: 3.5
+
+#---standard footprint---(in meters)---
+footprint: [ [0.254, -0.0508], [0.1778, -0.0508], [0.1778, -0.1778], [-0.1905, -0.1778], [-0.254, 0], [-0.1905, 0.1778], [0.1778, 0.1778], [0.1778, 0.0508], [0.254, 0.0508] ]
+
+inflation_radius: 1.25
+cost_scaling_factor: 2.5
+transform_tolerance: 0.25
+
+observation_sources: base_scan_1
+base_scan_1: {sensor_frame: base_laser_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+

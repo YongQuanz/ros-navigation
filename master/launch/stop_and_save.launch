@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Arguments-->
+  <arg name="node_start_delay_1" default="2.0"/>
+
+  <!-- Save Map -->
+  <node name="map_saver" pkg="map_server" type="map_saver" args="-f $(find master)/maps/dmap" output="screen"/>
+
+  <!-- Kill node with a python file -->
+  <node name="kill_node" pkg="master" type="kill_node.py" launch-prefix="bash -c 'sleep $(arg node_start_delay_1); $0 $@' "/>
+
+</launch>

@@ -1,0 +1,78 @@
+# pioneer.world - basic world file example using pretty models
+# Authors: Richard Vaughan
+# $Id$
+
+include "pioneer.inc"
+include "map.inc"
+include "sick.inc"
+
+paused 0
+
+# configure the GUI window
+window
+(
+  size [ 1124 490 ] # in pixels
+  scale 22.542   # pixels per meter
+  center [ 0.945  0.164 ]
+  rotate [ 8.000  -1.000 ]
+  			
+  show_data 1              # 1=on 0=off
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "cave"
+  size [16.000 16.000 0.800]
+  pose [0.000 0.000 0.000 0.000]
+  bitmap "cave.png"
+)
+
+fancypioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "r0"
+  pose [ 4.0316 -3.06105 0.000 -151.707 ] 
+
+  # pioneer2dx's sonars	will be ranger:0 and the laser will be ranger:1
+  fancysicklaser( pose [ 0.000 0.000 0.000 0.000 ] ) 
+ 
+  # demonstrate a plugin controller, implemented in examples/ctrl/wander.cc
+  #ctrl "wander"
+
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+
+define carton model
+(
+  # a carton is retangular
+  # so make a square shape and use size[]
+  block
+  (
+    points 4
+    point[0] [2 0]
+    point[1] [2 2]
+    point[2] [0 2]
+    point[3] [0 0]
+    z [0 2]
+  )
+
+  # average litre carton size is ~ 20cm x 10cm x 5cm ish
+  size [0.5 0.5 0.5]
+
+  obstacle_return 1           	# Can hit things.
+  #laser_return 1                 # reflects laser beams
+  ranger_return 1             	# reflects sonar beams
+  #blobfinder_return 1         	# Seen by blobfinders  
+  fiducial_return 1           	# Seen as "1" fiducial finders
+
+  color "DarkBlue"
+)
+
+carton(name "carton1" pose [-2 4 0 0])
+carton(name "carton2" pose [-2 3 0 0])
+carton(name "carton3" pose [-2 2 0 0])
+carton(name "carton4" pose [-2 1 0 0])
+
